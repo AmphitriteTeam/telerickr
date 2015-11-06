@@ -16,6 +16,6 @@
 
         public virtual IDbSet<Album> Albums { get; set; }
 
-        public virtual IDbSet<Comment> comments { get; set; }
+        public virtual IDbSet<Comment> Comments { get; set; }
     }
 }

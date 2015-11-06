@@ -6,8 +6,8 @@ namespace Telerickr.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = false;
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(TelerickrDbContext context)
