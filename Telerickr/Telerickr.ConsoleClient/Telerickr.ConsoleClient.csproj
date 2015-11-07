@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ADADC4F0-9773-41D2-B355-9D397A645B99}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{64E13136-17C3-40F1-B83D-ACB9CC978300}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Telerickr.Data</RootNamespace>
-    <AssemblyName>Telerickr.Data</AssemblyName>
+    <RootNamespace>Telerickr.ConsoleClient</RootNamespace>
+    <AssemblyName>Telerickr.ConsoleClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,20 +52,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenericRepository.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TelerickrContextFactory.cs" />
-    <Compile Include="TelerickrDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Telerickr.Data\Telerickr.Data.csproj">
+      <Project>{ADADC4F0-9773-41D2-B355-9D397A645B99}</Project>
+      <Name>Telerickr.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Telerickr.Models\Telerickr.Models.csproj">
-      <Project>{f02403df-cce8-45c9-a514-77726f9acc34}</Project>
+      <Project>{F02403DF-CCE8-45C9-A514-77726F9ACC34}</Project>
       <Name>Telerickr.Models</Name>
     </ProjectReference>
   </ItemGroup>

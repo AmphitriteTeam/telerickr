@@ -28,7 +28,7 @@
         [MaxLength(4)]
         public string FileExtension { get; set; }
 
-        public DateTime UploadDate { get; set; }
+        public DateTime? UploadDate { get; set; }
 
         public int Likes { get; set; }
 

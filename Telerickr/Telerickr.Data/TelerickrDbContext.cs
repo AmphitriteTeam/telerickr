@@ -1,12 +1,14 @@
-﻿namespace Telerickr.Data
+﻿using Telerickr.Data.Migrations;
+
+namespace Telerickr.Data
 {
     using System.Data.Entity;
     using Telerickr.Models;
 
     public class TelerickrDbContext : DbContext
     {
-        public TelerickrDbContext()
-            : base("Telerickr")
+        public TelerickrDbContext(string pass)
+            : base(string.Format("Server=telerickr.crannfpfmxvs.us-west-2.rds.amazonaws.com,1433;Database=telerickr;User Id=amphitrite;Password={0};", pass))
         {
         }
 
