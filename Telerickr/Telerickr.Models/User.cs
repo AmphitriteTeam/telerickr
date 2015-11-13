@@ -1,10 +1,12 @@
 ﻿namespace Telerickr.Models
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
 
-    public class User
+    public class User : IdentityUser
     {
         private ICollection<Photo> photos;
         private ICollection<Album> albums;
@@ -14,22 +16,6 @@
             this.photos = new HashSet<Photo>();
             this.albums = new HashSet<Album>();
         }
-
-        public int Id { get; set; }
-
-        [Required]
-        [Index(IsUnique = true)]
-        [MinLength(3)]
-        [MaxLength(20)]
-        public string Username { get; set; }
-
-        [Required]
-        [MinLength(4)]
-        [MaxLength(20)]
-        public string Password { get; set; }
-
-        [MaxLength(100)]
-        public string Email { get; set; }
 
         public virtual ICollection<Photo> Photos
         {
@@ -41,6 +27,14 @@
         {
             get { return this.albums; }
             set { this.albums = value; }
+        }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
+            // Add custom user claims here
+            return userIdentity;
         }
     }
 }
