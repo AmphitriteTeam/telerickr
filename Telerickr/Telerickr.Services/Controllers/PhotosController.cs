@@ -72,6 +72,7 @@ namespace Telerickr.Services.Controllers
             return this.Ok(newPhoto.Id);
         }
 
+        [Authorize]
         public IHttpActionResult Delete(int id)
         {
             var result = this.photos
@@ -82,8 +83,12 @@ namespace Telerickr.Services.Controllers
             {
                 return this.NotFound();
             }
-            
-            // TODO: Add user validation.
+
+            // Currently only the Album owner can delete photos.
+            if (this.User.Identity.Name != result.Album.User.UserName)
+            {
+                return this.Unauthorized();
+            }
 
             this.photos.Delete(result);
             this.photos.SaveChanges();
