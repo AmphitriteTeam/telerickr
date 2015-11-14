@@ -78,7 +78,7 @@
         }
 
         [Authorize]
-        public IHttpActionResult Put(int commentId, CommentRequestModel comment)
+        public IHttpActionResult Put(int id, CommentRequestModel comment)
         {
             if (!this.ModelState.IsValid)
             {
@@ -87,7 +87,7 @@
 
             var currentComment = this.comments
                 .All()
-                .FirstOrDefault(c => c.Id == commentId);
+                .FirstOrDefault(c => c.Id == id);
 
             if (currentComment == null)
             {
