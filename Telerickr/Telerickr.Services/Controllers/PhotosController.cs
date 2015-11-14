@@ -71,5 +71,24 @@ namespace Telerickr.Services.Controllers
 
             return this.Ok(newPhoto.Id);
         }
+
+        public IHttpActionResult Delete(int id)
+        {
+            var result = this.photos
+                .All()
+                .FirstOrDefault(p => p.Id == id);
+
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+            
+            // TODO: Add user validation.
+
+            this.photos.Delete(result);
+            this.photos.SaveChanges();
+
+            return this.Ok("Photo deleted");
+        }
     }
 }
