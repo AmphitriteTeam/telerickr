@@ -77,8 +77,13 @@
 
             var result = this.albums
                 .All()
-                .Where(a => a.Id == id && a.User.UserName == currentUser.UserName)
+                .Where(a => a.Id == id)
                 .FirstOrDefault();
+
+            if (result.User.UserName != currentUser.UserName)
+            {
+                return this.Unauthorized();
+            }
 
             if (result == null)
             {
