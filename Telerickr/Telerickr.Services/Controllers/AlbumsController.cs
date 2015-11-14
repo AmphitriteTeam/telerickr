@@ -36,6 +36,11 @@
                 .Select(AlbumResponceModel.FromModel)
                 .ToList();
 
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+
             return this.Ok(result);
         }
 
@@ -47,21 +52,43 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            var currentUser = this.User.Identity.Name;
-            var creator = this.users
+            var currentUser = this.users
                 .All()
-                .FirstOrDefault(u => u.UserName == currentUser);
+                .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
 
             var newAlbum = new Album
             {
                 Title = model.Title,
-                User = creator
+                User = currentUser
             };
 
             this.albums.Add(newAlbum);
             this.albums.SaveChanges();
 
             return this.Ok(newAlbum.Id);
+        }
+
+        [Authorize]
+        public IHttpActionResult Delete(int id)
+        {
+            var currentUser = this.users
+                .All()
+                .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+
+            var result = this.albums
+                .All()
+                .Where(a => a.Id == id && a.User.UserName == currentUser.UserName)
+                .FirstOrDefault();
+
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+
+            this.albums.Delete(result);
+            this.albums.SaveChanges();
+
+            return this.Ok("Album deleted");
         }
     }
 }
