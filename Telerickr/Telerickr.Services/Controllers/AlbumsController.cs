@@ -48,6 +48,36 @@
         }
 
         [Authorize]
+        public IHttpActionResult Put(int id, AlbumRequestModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var album = this.albums
+                .All()
+                .FirstOrDefault(a => a.Id == id);
+
+            if (albums == null)
+            {
+                return this.NotFound();
+            }
+
+            if (album.User.UserName != this.User.Identity.Name)
+            {
+                return this.Unauthorized();
+            }
+
+            album.Title = model.Title;
+
+            this.albums.Update(album);
+            this.albums.SaveChanges();
+
+            return this.Ok("Album updated");
+        }
+
+        [Authorize]
         public IHttpActionResult Post(AlbumRequestModel model)
         {
             if (!this.ModelState.IsValid)
