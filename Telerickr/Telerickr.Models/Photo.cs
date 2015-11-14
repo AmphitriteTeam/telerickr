@@ -6,6 +6,13 @@
 
     public class Photo
     {
+        private ICollection<Comment> comments;
+
+        public Photo()
+        {
+            this.comments = new HashSet<Comment>();
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -21,7 +28,7 @@
         [MaxLength(4)]
         public string FileExtension { get; set; }
 
-        public DateTime? UploadDate { get; set; }
+        public DateTime UploadDate { get; set; }
 
         public int Likes { get; set; }
         
@@ -29,5 +36,11 @@
         public int AlbumId { get; set; }
 
         public Album Album { get; set; }
+
+        public virtual ICollection<Comment> Comments
+        {
+            get { return this.comments; }
+            set { this.comments = value; }
+        }
     }
 }
