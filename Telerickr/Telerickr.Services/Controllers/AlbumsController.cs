@@ -10,12 +10,14 @@
     {
         private readonly IRepository<Album> albums;
         private readonly IRepository<User> users;
+        private readonly IRepository<Photo> photos;
 
         public AlbumsController()
         {
             var db = new TelerickrDbContext();
             this.albums = new GenericRepository<Album>(db);
             this.users = new GenericRepository<User>(db);
+            this.photos = new GenericRepository<Photo>(db);
         }
 
         public IHttpActionResult Get()
@@ -90,10 +92,19 @@
                 return this.NotFound();
             }
 
+            var numberOfPhotos = result.Photos.Count;
+            var allPhotos = result.Photos.ToList();
+
+            for (int i = 0; i < numberOfPhotos; i++)
+            {
+                this.photos.Delete(allPhotos[i]);
+            }
+
             this.albums.Delete(result);
             this.albums.SaveChanges();
+            this.photos.SaveChanges();
 
-            return this.Ok("Album deleted");
+            return this.Ok("Album deleted with all pictures inside.");
         }
     }
 }
