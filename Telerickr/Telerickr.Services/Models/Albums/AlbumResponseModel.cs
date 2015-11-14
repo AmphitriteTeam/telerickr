@@ -4,17 +4,17 @@
     using System.Linq.Expressions;
     using Telerickr.Models;
 
-    public class AlbumResponceModel
+    public class AlbumResponseModel
     {
         public int Id { get; set; }
 
         public string Title { get; set; }
 
-        public static Expression<Func<Album, AlbumResponceModel>> FromModel
+        public static Expression<Func<Album, AlbumResponseModel>> FromModel
         {
             get
             {
-                return a => new AlbumResponceModel
+                return a => new AlbumResponseModel
                 {
                     Id = a.Id,
                     Title = a.Title

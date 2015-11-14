@@ -25,7 +25,7 @@
         {
             var result = this.albums
                 .All()
-                .Select(AlbumResponceModel.FromModel)
+                .Select(AlbumResponseModel.FromModel)
                 .ToList();
 
             return this.Ok(result);
@@ -36,7 +36,7 @@
             var result = this.albums
                 .All()
                 .Where(a => a.Id == id)
-                .Select(AlbumResponceModel.FromModel)
+                .Select(AlbumResponseModel.FromModel)
                 .ToList();
 
             if (result == null)

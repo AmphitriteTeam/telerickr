@@ -3,9 +3,10 @@
     using System;
     using System.Linq;
     using System.Web.Http;
-    using Telerickr.Data;
+
+    using Data;
     using Telerickr.Models;
-    using Telerickr.Services.Models.Photos;
+    using Models.Photos;
 
     public class PhotosController : ApiController
     {
@@ -23,7 +24,7 @@
                 .All()
                 .OrderByDescending(p => p.UploadDate)
                 .Take(10)
-                .Select(PhotoResponceModel.FromModel)
+                .Select(PhotoResponseModel.FromModel)
                 .ToList();
 
             return this.Ok(result);
@@ -34,7 +35,7 @@
             var result = this.photos
                 .All()
                 .Where(p => p.Id == id)
-                .Select(PhotoResponceModel.FromModel)
+                .Select(PhotoResponseModel.FromModel)
                 .FirstOrDefault();
 
             if (result == null)
@@ -69,6 +70,30 @@
             return this.Ok(newPhoto.Id);
         }
 
+        [Authorize]
+        public IHttpActionResult Put(int id, bool like)
+        {
+            var photo = this.photos
+                .All()
+                .FirstOrDefault(p => p.Id == id);
+
+            var result = string.Empty;
+            if (like)
+            {
+                photo.Likes++;
+                result = "Sucessfully liked picture!";
+            }
+            else
+            {
+                photo.Likes--;
+                result = "Sucessfully disliked picture!";
+            }
+
+            this.photos.SaveChanges();
+
+            return this.Ok(result);
+        }
+        
         [Authorize]
         public IHttpActionResult Delete(int id)
         {

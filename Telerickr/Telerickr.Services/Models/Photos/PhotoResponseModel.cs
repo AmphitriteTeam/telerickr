@@ -4,7 +4,7 @@
     using System.Linq.Expressions;
     using Telerickr.Models;
 
-    public class PhotoResponceModel
+    public class PhotoResponseModel
     {
         public int Id { get; set; }
 
@@ -16,11 +16,11 @@
 
         public int Likes { get; set; }
 
-        public static Expression<Func<Photo, PhotoResponceModel>> FromModel
+        public static Expression<Func<Photo, PhotoResponseModel>> FromModel
         {
             get
             {
-                return p => new PhotoResponceModel
+                return p => new PhotoResponseModel
                 {
                     Id = p.Id,
                     Title = p.Title,
