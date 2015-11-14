@@ -8,19 +8,11 @@
 
     public class User : IdentityUser
     {
-        private ICollection<Photo> photos;
         private ICollection<Album> albums;
 
         public User()
         {
-            this.photos = new HashSet<Photo>();
             this.albums = new HashSet<Album>();
-        }
-
-        public virtual ICollection<Photo> Photos
-        {
-            get { return this.photos; }
-            set { this.photos = value; }
         }
 
         public virtual ICollection<Album> Albums

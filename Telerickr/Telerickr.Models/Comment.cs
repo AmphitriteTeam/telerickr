@@ -10,8 +10,9 @@
         [MaxLength(200)]
         public string Content { get; set; }
 
-        public int PhotoId { get; set; }
+        [Required]
+        public string UserId { get; set; }
 
-        public virtual Photo Photo { get; set; }
+        public virtual User User { get; set; }
     }
 }
