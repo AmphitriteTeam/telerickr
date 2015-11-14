@@ -3,8 +3,9 @@
     using System.Web.Http;
     using System.Linq;
     using Data;
+
     using Telerickr.Models;
-    using Models;
+    using Models.Albums;
 
     public class AlbumsController : ApiController
     {

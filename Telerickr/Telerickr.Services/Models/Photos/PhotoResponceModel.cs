@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
-using Telerickr.Models;
-
-namespace Telerickr.Services.Models
+﻿namespace Telerickr.Services.Models.Photos
 {
+    using System;
+    using System.Linq.Expressions;
+    using Telerickr.Models;
+
     public class PhotoResponceModel
     {
         public int Id { get; set; }

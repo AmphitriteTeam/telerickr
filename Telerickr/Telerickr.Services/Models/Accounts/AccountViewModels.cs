@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
 
+    // TODO: Separe classes - change namespace.
+
     // Models returned by AccountController actions.
     public class ExternalLoginViewModel
     {

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using Telerickr.Data;
-using Telerickr.Models;
-using Telerickr.Services.Models;
-
-namespace Telerickr.Services.Controllers
+﻿namespace Telerickr.Services.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Http;
+    using Telerickr.Data;
+    using Telerickr.Models;
+    using Telerickr.Services.Models.Photos;
+
     public class PhotosController : ApiController
     {
         private readonly IRepository<Photo> photos;

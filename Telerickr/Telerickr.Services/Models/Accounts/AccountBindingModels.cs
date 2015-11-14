@@ -3,6 +3,8 @@
     using System.ComponentModel.DataAnnotations;
     using Newtonsoft.Json;
 
+    // TODO: Separe classes - change namespace.
+
     // Models used as parameters to AccountController actions.
     public class AddExternalLoginBindingModel
     {
