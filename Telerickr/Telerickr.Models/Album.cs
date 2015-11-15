@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Common;
+
     public class Album
     {
         private ICollection<Photo> photos;
@@ -15,8 +17,8 @@
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ValidationConstants.TitleMinLength)]
+        [MaxLength(ValidationConstants.TitleMaxLength)]
         public string Title { get; set; }
 
         [Required]

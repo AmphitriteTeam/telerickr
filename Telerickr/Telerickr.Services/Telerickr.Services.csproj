@@ -206,6 +206,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Telerickr.Common\Telerickr.Common.csproj">
+      <Project>{129d9a86-fe54-425c-b67e-7108d0ce8db8}</Project>
+      <Name>Telerickr.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Telerickr.Data\Telerickr.Data.csproj">
       <Project>{adadc4f0-9773-41d2-b355-9d397a645b99}</Project>
       <Name>Telerickr.Data</Name>

@@ -2,19 +2,21 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Common;
+
     public class PhotoRequestModel
     {
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ValidationConstants.TitleMinLength)]
+        [MaxLength(ValidationConstants.TitleMaxLength)]
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(ValidationConstants.UrlMaxLength)]
         public string ImageUrl { get; set; }
 
         [Required]
-        [MaxLength(4)]
+        [MaxLength(ValidationConstants.FileExtensionMaxLength)]
         public string FileExtension { get; set; }
 
         [Required]

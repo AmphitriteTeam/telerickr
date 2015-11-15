@@ -2,10 +2,13 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Common;
+
     public class AlbumRequestModel
     {
         [Required]
-        [MaxLength(50)]
+        [MinLength(ValidationConstants.TitleMinLength)]
+        [MaxLength(ValidationConstants.TitleMaxLength)]
         public string Title { get; set; }
     }
 }

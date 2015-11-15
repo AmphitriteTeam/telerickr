@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Common;
+
     public class Photo
     {
         private ICollection<Comment> comments;
@@ -16,16 +18,16 @@
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ValidationConstants.TitleMinLength)]
+        [MaxLength(ValidationConstants.TitleMaxLength)]
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(ValidationConstants.UrlMaxLength)]
         public string ImageUrl { get; set; }
 
         [Required]
-        [MaxLength(4)]
+        [MaxLength(ValidationConstants.FileExtensionMaxLength)]
         public string FileExtension { get; set; }
 
         public DateTime UploadDate { get; set; }
