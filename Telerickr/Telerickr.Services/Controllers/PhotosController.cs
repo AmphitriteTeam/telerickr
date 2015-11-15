@@ -1,12 +1,11 @@
 ﻿namespace Telerickr.Services.Controllers
 {
+    using Data;
+    using Models.Photos;
     using System;
     using System.Linq;
     using System.Web.Http;
-
-    using Data;
     using Telerickr.Models;
-    using Models.Photos;
 
     public class PhotosController : ApiController
     {
@@ -42,6 +41,20 @@
             {
                 return this.NotFound();
             }
+
+            return this.Ok(result);
+        }
+
+        [Route("api/photos/all")]
+        public IHttpActionResult Get(int page, int pageSize = 10)
+        {
+            var result = this.photos
+                .All()
+                .OrderByDescending(p => p.UploadDate)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(PhotoResponseModel.FromModel)
+                .ToList();
 
             return this.Ok(result);
         }
