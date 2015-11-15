@@ -1,9 +1,9 @@
 ﻿namespace Telerickr.Services.Controllers
 {
-    using System.Web.Http;
     using System.Linq;
-    using Data;
+    using System.Web.Http;
 
+    using Data;
     using Telerickr.Models;
     using Models.Albums;
 

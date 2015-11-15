@@ -14,11 +14,11 @@
     using Microsoft.Owin.Security;
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
+    using Telerickr.Models;
     using Telerickr.Services.Models;
     using Telerickr.Services.Providers;
     using Telerickr.Services.Results;
-    using Telerickr.Models;
-
+    
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
@@ -43,6 +43,7 @@
             {
                 return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
                 _userManager = value;
@@ -289,8 +290,8 @@
 
             if (generateState)
             {
-                const int strengthInBits = 256;
-                state = RandomOAuthStateGenerator.Generate(strengthInBits);
+                const int StrengthInBits = 256;
+                state = RandomOAuthStateGenerator.Generate(StrengthInBits);
             }
             else
             {
@@ -370,6 +371,7 @@
             {
                 return GetErrorResult(result); 
             }
+
             return Ok();
         }
 
@@ -423,7 +425,9 @@
         private class ExternalLoginData
         {
             public string LoginProvider { get; set; }
+
             public string ProviderKey { get; set; }
+
             public string UserName { get; set; }
 
             public IList<Claim> GetClaims()
@@ -474,14 +478,14 @@
 
             public static string Generate(int strengthInBits)
             {
-                const int bitsPerByte = 8;
+                const int BitsPerByte = 8;
 
-                if (strengthInBits % bitsPerByte != 0)
+                if (strengthInBits % BitsPerByte != 0)
                 {
                     throw new ArgumentException("strengthInBits must be evenly divisible by 8.", "strengthInBits");
                 }
 
-                int strengthInBytes = strengthInBits / bitsPerByte;
+                int strengthInBytes = strengthInBits / BitsPerByte;
 
                 byte[] data = new byte[strengthInBytes];
                 _random.GetBytes(data);
