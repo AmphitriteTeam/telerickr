@@ -4,7 +4,7 @@
     using System.Data.Entity;
     using Telerickr.Models;
 
-    public class TelerickrDbContext : IdentityDbContext<User>
+    public class TelerickrDbContext : IdentityDbContext<User>, ITelerickrDbContext
     {
         public TelerickrDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

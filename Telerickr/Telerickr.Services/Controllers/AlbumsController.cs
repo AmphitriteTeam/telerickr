@@ -13,12 +13,11 @@
         private readonly IRepository<User> users;
         private readonly IRepository<Photo> photos;
 
-        public AlbumsController()
+        public AlbumsController(IRepository<Album> albums, IRepository<User> users, IRepository<Photo> photos)
         {
-            var db = new TelerickrDbContext();
-            this.albums = new GenericRepository<Album>(db);
-            this.users = new GenericRepository<User>(db);
-            this.photos = new GenericRepository<Photo>(db);
+            this.albums = albums;
+            this.users = users;
+            this.photos = photos;
         }
 
         public IHttpActionResult Get()

@@ -13,10 +13,9 @@
     {
         private readonly IRepository<Photo> photos;
 
-        public PhotosController()
+        public PhotosController(IRepository<Photo> photos)
         {
-            var db = new TelerickrDbContext();
-            this.photos = new GenericRepository<Photo>(db);
+            this.photos = photos;
         }
 
         public IHttpActionResult Get()

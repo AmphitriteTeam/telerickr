@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="GenericRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="ITelerickrDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TelerickrContextFactory.cs" />

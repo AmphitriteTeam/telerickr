@@ -13,11 +13,10 @@
         private readonly IRepository<Photo> photos;
         private readonly IRepository<Comment> comments;
 
-        public CommentsController()
+        public CommentsController(IRepository<Comment> comments, IRepository<Photo> photos)
         {
-            var db = new TelerickrDbContext();
-            this.photos = new GenericRepository<Photo>(db);
-            this.comments = new GenericRepository<Comment>(db);
+            this.comments = comments;
+            this.photos = photos;
         }
 
         public IHttpActionResult Get()
