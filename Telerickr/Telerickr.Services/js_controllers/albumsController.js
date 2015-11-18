@@ -5,12 +5,10 @@ var albumsController = (function() {
         data.albums.get()
             .then(function(resAlbums) {
                 albums = resAlbums;
-                console.log(albums);
                 return templates.get('albums');
             })
             .then(function(template) {
                 context.$element().html(template(albums));
-                return data.categories.get();
             });
     }
 

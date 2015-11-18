@@ -2,7 +2,7 @@ var data = (function() {
     var LOCAL_STORAGE_USERNAME_KEY = 'x-username',
         LOCAL_STORAGE_AUTHKEY_KEY = 'Authorization';
 
-    var USERNAME_CHARS = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890_.",
+    var USERNAME_CHARS = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890_.@",
         USERNAME_MIN_LENGTH = 6,
         USERNAME_MAX_LENGTH = 30;
 
@@ -12,14 +12,8 @@ var data = (function() {
     /* Users */
 
     function register(user) {
-        var error = validator.validateString(user.username, USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH, "name", USERNAME_CHARS);
-
-        if (error) {
-            toastr.error(error.message);
-            return Promise.reject(error.message);
-        }
-
         var reqUser = {
+            email: user.email,
             password: user.password,
             confirmPassword: user.confirmPassword
         };
@@ -29,7 +23,7 @@ var data = (function() {
             })
             .then(function(resp) {
                 return {
-                    username: resp.result.username
+                    username: resp.username
                 };
             });
     }
@@ -53,7 +47,7 @@ var data = (function() {
             data: reqUser
         };
 
-        return jsonRequester.put('api/account/login', options)
+        return jsonRequester.post('api/account/login', options)
             .then(function(resp) {
                 localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.username);
                 localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, resp.access_token);
@@ -83,7 +77,6 @@ var data = (function() {
         };
         return jsonRequester.get('api/albums', options)
             .then(function(res) {
-                console.log(res);
                 return res;
             });
     }

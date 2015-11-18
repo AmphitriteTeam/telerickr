@@ -6,8 +6,9 @@ var usersController = function() {
 
         $('#btn-register').on('click', function() {
           var user = {
-            username: $('#tb-reg-username').val(),
-            password: $('#tb-reg-pass').val()
+            email: $('#tb-reg-username').val(),
+            password: $('#tb-reg-pass').val(),
+            confirmPassword: $('#tb-reg-confirmPass').val()
           };
 
           data.users.register(user)
