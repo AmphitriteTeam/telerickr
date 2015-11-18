@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telerickr.Data", "Telerickr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telerickr.Models", "Telerickr.Models\Telerickr.Models.csproj", "{F02403DF-CCE8-45C9-A514-77726F9ACC34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telerickr.ConsoleClient", "Telerickr.ConsoleClient\Telerickr.ConsoleClient.csproj", "{64E13136-17C3-40F1-B83D-ACB9CC978300}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telerickr.Services", "Telerickr.Services\Telerickr.Services.csproj", "{F700B202-7FC5-47DA-BB42-B25E3E7A03E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telerickr.Common", "Telerickr.Common\Telerickr.Common.csproj", "{129D9A86-FE54-425C-B67E-7108D0CE8DB8}"
@@ -27,10 +25,6 @@ Global
 		{F02403DF-CCE8-45C9-A514-77726F9ACC34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F02403DF-CCE8-45C9-A514-77726F9ACC34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F02403DF-CCE8-45C9-A514-77726F9ACC34}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64E13136-17C3-40F1-B83D-ACB9CC978300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64E13136-17C3-40F1-B83D-ACB9CC978300}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64E13136-17C3-40F1-B83D-ACB9CC978300}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64E13136-17C3-40F1-B83D-ACB9CC978300}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F700B202-7FC5-47DA-BB42-B25E3E7A03E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F700B202-7FC5-47DA-BB42-B25E3E7A03E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F700B202-7FC5-47DA-BB42-B25E3E7A03E5}.Release|Any CPU.ActiveCfg = Release|Any CPU

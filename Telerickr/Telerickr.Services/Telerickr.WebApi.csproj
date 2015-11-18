@@ -68,11 +68,19 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -1419,12 +1427,12 @@
     <Content Include="bower_components\toastr\toastr.js" />
     <Content Include="bower_components\toastr\toastr.min.css" />
     <Content Include="bower_components\toastr\toastr.min.js" />
+    <Content Include="Controllers\albumsController.js" />
+    <Content Include="Controllers\myAlbumsController.js" />
+    <Content Include="Controllers\usersController.js" />
     <Content Include="Global.asax" />
+    <Content Include="identity.aspx" />
     <Content Include="index.html" />
-    <Content Include="js_controllers\albumsController.js" />
-    <Content Include="js_controllers\helpers\controller-helpers.js" />
-    <Content Include="js_controllers\myAlbumsController.js" />
-    <Content Include="js_controllers\usersController.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1603,13 +1611,12 @@
     <Content Include="bower_components\toastr\toastr.less" />
     <Content Include="bower_components\toastr\toastr.scss" />
     <None Include="Properties\PublishProfiles\telerickr.pubxml" />
-    <Content Include="templates\my-albums.handlebars" />
+    <Content Include="templates\cookies.handlebars" />
+    <Content Include="templates\my-cookie.handlebars" />
     <Content Include="templates\register.handlebars" />
-    <Content Include="templates\share-albums.handlebars" />
+    <Content Include="templates\share-cookie.handlebars" />
     <Content Include="templates\users.handlebars" />
-    <Content Include="templates\albums.handlebars" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
