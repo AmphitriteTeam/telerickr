@@ -127,16 +127,12 @@ var data = (function() {
             signIn: signIn,
             signOut: signOut,
             register: register,
-            hasUser: hasUser,
-            get: usersGet,
-            getUserById: getUserById
+            hasUser: hasUser
         },
         albums: {
             get: albumsGet,
             getMyAlbums: getMyAlbums,
-            add: albumsAdd,
-            like: albumsLike,
-            dislike: albumsDislike
+            add: albumsAdd
         }
     };
 }());
