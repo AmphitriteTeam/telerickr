@@ -1561,7 +1561,6 @@
     <Content Include="resources\jquery-ui\composer.json" />
     <Content Include="resources\jquery-ui\package.json" />
     <Content Include="resources\jquery-ui\README.md" />
-    <Content Include="resources\jquery-ui\ui\.DS_Store" />
     <Content Include="resources\jquery-ui\ui\.jshintrc" />
     <Content Include="resources\jquery\.bower.json" />
     <Content Include="resources\jquery\bower.json" />
