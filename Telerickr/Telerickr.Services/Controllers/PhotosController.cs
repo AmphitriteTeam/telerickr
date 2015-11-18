@@ -4,11 +4,11 @@
     using System.Linq;
     using System.Web.Http;
 
+    using Common;
     using Data;
     using Models.Photos;
     using Telerickr.Models;
-    using Common;
-
+    
     public class PhotosController : ApiController
     {
         private readonly IRepository<Photo> photos;

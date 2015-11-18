@@ -9,7 +9,7 @@ namespace Telerickr.Services
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            this.ConfigureAuth(app);
         }
     }
 }

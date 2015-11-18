@@ -1,7 +1,7 @@
 ﻿namespace Telerickr.Data
 {
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System.Data.Entity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Telerickr.Models;
 
     public class TelerickrDbContext : IdentityDbContext<User>, ITelerickrDbContext

@@ -6,11 +6,10 @@ namespace Telerickr.Services.App_Start
     using System;
     using System.Web;
 
+    using Data;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
-    using Data;
 
     public static class NinjectConfig 
     {
@@ -46,7 +45,6 @@ namespace Telerickr.Services.App_Start
             }
         }
 
-        
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<ITelerickrDbContext>().To<TelerickrDbContext>().InRequestScope();

@@ -4,9 +4,9 @@
     using System.Web.Http;
 
     using Data;
-    using Telerickr.Models;
     using Models.Albums;
-
+    using Telerickr.Models;
+    
     public class AlbumsController : ApiController
     {
         private readonly IRepository<Album> albums;
@@ -58,7 +58,7 @@
                 .All()
                 .FirstOrDefault(a => a.Id == id);
 
-            if (albums == null)
+            if (this.albums == null)
             {
                 return this.NotFound();
             }

@@ -1,13 +1,12 @@
 ﻿namespace Telerickr.Services.Controllers
 {
-    using System;
     using System.Linq;
     using System.Web.Http;
     
     using Data;
-    using Telerickr.Models;
     using Models.Comments;
-
+    using Telerickr.Models;
+    
     public class CommentsController : ApiController
     {
         private readonly IRepository<Photo> photos;
