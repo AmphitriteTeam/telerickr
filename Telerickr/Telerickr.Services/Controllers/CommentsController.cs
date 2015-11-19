@@ -46,36 +46,7 @@
 
             return this.Ok(result);
         }
-
-        [Authorize]
-        public IHttpActionResult Post(int photoId, CommentRequestModel comment)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.BadRequest(this.ModelState);
-            }
-
-            var photo = this.photos
-                .All()
-                .FirstOrDefault(p => p.Id == photoId);
-
-            if (photo == null)
-            {
-                return this.NotFound();
-            }
-
-            var commentToAdd = new Comment()
-            {
-                Content = comment.Content,
-                UserId = comment.UserId
-            };
-
-            photo.Comments.Add(commentToAdd);
-            this.photos.SaveChanges();
-
-            return this.Ok("Comment succesfully added.");
-        }
-
+        
         [Authorize]
         public IHttpActionResult Put(int id, CommentRequestModel comment)
         {
@@ -104,6 +75,35 @@
             this.comments.SaveChanges();
 
             return this.Ok("Comment updated");
+        }
+
+        [Authorize]
+        public IHttpActionResult Post(int photoId, CommentRequestModel comment)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var photo = this.photos
+                .All()
+                .FirstOrDefault(p => p.Id == photoId);
+
+            if (photo == null)
+            {
+                return this.NotFound();
+            }
+
+            var commentToAdd = new Comment()
+            {
+                Content = comment.Content,
+                UserId = comment.UserId
+            };
+
+            photo.Comments.Add(commentToAdd);
+            this.photos.SaveChanges();
+
+            return this.Ok("Comment succesfully added.");
         }
 
         [Authorize]
