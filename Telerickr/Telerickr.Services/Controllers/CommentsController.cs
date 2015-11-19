@@ -2,11 +2,12 @@
 {
     using System.Linq;
     using System.Web.Http;
-    
+
     using Data;
     using Models.Comments;
     using Telerickr.Models;
-    
+    using Common;
+
     public class CommentsController : ApiController
     {
         private readonly IRepository<Photo> photos;
@@ -23,7 +24,7 @@
             var result = this.comments
                 .All()
                 .OrderBy(p => p.Id)
-                .Take(10)
+                .Take(GlobalConstants.DefaultPageSize)
                 .Select(CommentResponseModel.FromModel)
                 .ToList();
 
