@@ -60,7 +60,7 @@
           .then(function(user) {
             document.location = '#/';
             document.location.reload(true);
-          }, function(err) {
+          }, function (err) {
             $('#container-sign-in').trigger("reset");
             toastr.error('Invalid username and/or password!');
           });

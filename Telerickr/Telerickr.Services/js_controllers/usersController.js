@@ -13,7 +13,7 @@ var usersController = function() {
 
           data.users.register(user)
             .then(function() {
-              toastr.success('User ' + user.username + ' registered! You can now login!');
+              toastr.success('User ' + user.email + ' registered! You can now login!');
               context.redirect('#/');
             });
         });

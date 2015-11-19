@@ -37,18 +37,14 @@ var data = (function() {
             return Promise.reject(error.message);
         }
 
-        var reqUser = {
-            username: user.username,
-            password: user.password,
-            grant_type: "password"
-        };
-
         var options = {
-            data: reqUser
+            contentType: 'application/x-www-form-urlencoded',
+            data: "username=" + user.username + "&password=" + user.password + "&grant_type=password"
         };
 
         return jsonRequester.post('api/account/login', options)
-            .then(function(resp) {
+            .then(function (resp) {
+                console.log(resp);
                 localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.username);
                 localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, resp.access_token);
                 return user;

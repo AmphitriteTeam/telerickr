@@ -4,15 +4,18 @@ var jsonRequester = (function() {
     options = options || {};
 
     var headers = options.headers || {},
-      data = options.data || undefined;
+      data = options.data || undefined,
+      contentType = options.contentType || 'application/json';
+
+    data = (contentType === 'application/json') ? JSON.stringify(data) : data;
 
     var promise = new Promise(function(resolve, reject) {
       $.ajax({
         url: url,
         method: method,
-        contentType: 'application/json',
+        contentType: contentType,
         headers: headers,
-        data: JSON.stringify(data),
+        data: data,
         success: function(res) {
           resolve(res);
         },
