@@ -12,6 +12,9 @@
     this.get('#/albums', albumsController.all);
     this.get('#/albums/share', albumsController.add);
 
+    this.get('#/photos', photosController.all);
+    this.get('#/photos/share', photosController.add);
+
     this.get('#/my-albums', myAlbumsController.get);
 
   });
@@ -27,12 +30,16 @@
       var $shareAlbumLink = $('<a>').attr('href', './#/albums/share').text('Share Album');
       $shareAlbumItem.append($shareAlbumLink);
 
+      var $sharePhotoItem = $('<li>').attr('id', 'share-photo-item');
+      var $sharePhotoLink = $('<a>').attr('href', './#/photos/share').text('Share Photo');
+      $sharePhotoItem.append($sharePhotoLink);
+
       var $myAlbumsItem = $('<li>').attr('id', 'my-album-item');
       var $myAlbumsLink = $('<a>').attr('href', './#/my-albums').text('My Albums');
       $myAlbumsItem.append($myAlbumsLink);
 
       $mainNav.append($shareAlbumItem);
-      $mainNav.append($myAlbumsItem);
+      $mainNav.append($sharePhotoItem);
 
       $('#container-sign-in').addClass('hidden');
       $('#btn-sign-out').on('click', function(e) {

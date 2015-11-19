@@ -13,14 +13,14 @@ var albumsController = (function() {
     }
 
     function add(context) {
-        templates.get('share-album')
+        templates.get('share-albums')
             .then(function(template) {
                 context.$element().html(template());
             })
             .then(function() {
                 $('#btn-album-add').on('click', function () {
                     var album = {
-                        text: $('#tb-album-title').val()
+                        title: $('#tb-album-title').val()
                     };
 
                     data.albums.add(album)

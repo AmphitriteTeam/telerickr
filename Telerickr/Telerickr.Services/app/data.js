@@ -1,5 +1,5 @@
 var data = (function() {
-    var LOCAL_STORAGE_USERNAME_KEY = 'x-username',
+    var LOCAL_STORAGE_USERNAME_KEY = 'user',
         LOCAL_STORAGE_AUTHKEY_KEY = 'Authorization';
 
     var USERNAME_CHARS = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890_.@",
@@ -7,7 +7,7 @@ var data = (function() {
         USERNAME_MAX_LENGTH = 30;
 
     var ALBUM_TITLE_MIN_LENGTH = 6,
-        ALBUM_TITLE_MAX_LENGTH = 30
+        ALBUM_TITLE_MAX_LENGTH = 30;
 
     /* Users */
 
@@ -44,7 +44,6 @@ var data = (function() {
 
         return jsonRequester.post('api/account/login', options)
             .then(function (resp) {
-                console.log(resp);
                 localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.username);
                 localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, resp.access_token);
                 return user;
@@ -101,14 +100,49 @@ var data = (function() {
         var options = {
             data: album,
             headers: {
-                'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY)
+                'Authorization': "Bearer " + localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY)
             }
         };
 
         return jsonRequester.post('api/albums', options)
             .then(function(resp) {
-                return resp.result;
+                return resp;
             });
+    }
+
+    function photosGet() {
+        var options = {
+            headers: {
+                'Authorization': "Bearer " + localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY)
+            }
+        };
+
+        return jsonRequester.get('api/photos', options)
+            .then(function (res) {
+                return res;
+            });
+    }
+
+    function photosAdd(photo) {
+        var photo = {
+            title: photo.title,
+            imageUrl: photo.imageUrl,
+            fileExtension: photo.imageUrl.substr(photo.imageUrl.lastIndexOf(".")+1),
+            uploadDate: new Date(),
+            albumId: photo.albumId
+    }
+
+        var options = {
+            data: photo,
+            headers: {
+                'Authorization': "Bearer " + localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY)
+            }
+        };
+
+        return jsonRequester.post('api/photos', options)
+        .then(function (resp) {
+            return resp;
+        });
     }
 
     return {
@@ -122,6 +156,10 @@ var data = (function() {
             get: albumsGet,
             getMyAlbums: getMyAlbums,
             add: albumsAdd
+        },
+        photos: {
+            add: photosAdd,
+            get: photosGet
         }
     };
 }());
