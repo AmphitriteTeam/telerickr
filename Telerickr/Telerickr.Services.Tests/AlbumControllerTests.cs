@@ -1,17 +1,17 @@
 ﻿namespace Telerickr.Services.Tests
 {
     using System.Collections.Generic;
+    using System.Web.Http.Results;
+
+    using Common;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TestObjects;
-    using Telerickr.Models;
     using Mocks;
     using Models.Albums;
-    using System.Web.Http.Results;
-    using Common;
-    using Controllers;
+    using Telerickr.Models;
+    using TestObjects;
 
     /// <summary>
-    /// Summary description for AlbumControllerTests
+    /// Album Controller CRUD Tests
     /// </summary>
     [TestClass]
     public class AlbumControllerTests
@@ -20,7 +20,7 @@
         private InMemoryRepository<User> users;
         private InMemoryRepository<Photo> photos;
 
-        [TestInitialize()]
+        [TestInitialize]
         public void Init()
         {
             this.albums = ObjectsFactory.GetAlbumRepository();
@@ -266,7 +266,5 @@
             Assert.AreEqual(expectedSaveChanges, this.albums.NumberOfSaves);
             Assert.AreEqual(expectedCount, this.albums.NumberOfModels);
         }
-
-
     }
 }
