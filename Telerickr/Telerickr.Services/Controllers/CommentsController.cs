@@ -2,11 +2,12 @@
 {
     using System.Linq;
     using System.Web.Http;
-    
+
     using Data;
     using Models.Comments;
     using Telerickr.Models;
-    
+    using Common;
+
     public class CommentsController : ApiController
     {
         private readonly IRepository<Photo> photos;
@@ -23,7 +24,7 @@
             var result = this.comments
                 .All()
                 .OrderBy(p => p.Id)
-                .Take(10)
+                .Take(GlobalConstants.DefaultPageSize)
                 .Select(CommentResponseModel.FromModel)
                 .ToList();
 
@@ -44,6 +45,36 @@
             }
 
             return this.Ok(result);
+        }
+        
+        [Authorize]
+        public IHttpActionResult Put(int id, CommentRequestModel comment)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var currentComment = this.comments
+                .All()
+                .FirstOrDefault(c => c.Id == id);
+
+            if (currentComment == null)
+            {
+                return this.NotFound();
+            }
+
+            if (currentComment.User.UserName != this.User.Identity.Name)
+            {
+                return this.Unauthorized();
+            }
+
+            currentComment.Content = comment.Content;
+
+            this.comments.Update(currentComment);
+            this.comments.SaveChanges();
+
+            return this.Ok("Comment updated");
         }
 
         [Authorize]
@@ -73,36 +104,6 @@
             this.photos.SaveChanges();
 
             return this.Ok("Comment succesfully added.");
-        }
-
-        [Authorize]
-        public IHttpActionResult Put(int id, CommentRequestModel comment)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.BadRequest(this.ModelState);
-            }
-
-            var currentComment = this.comments
-                .All()
-                .FirstOrDefault(c => c.Id == id);
-
-            if (currentComment == null)
-            {
-                return this.NotFound();
-            }
-
-            if (currentComment.User.UserName != this.User.Identity.Name)
-            {
-                return this.Unauthorized();
-            }
-
-            currentComment.Content = comment.Content;
-
-            this.comments.Update(currentComment);
-            this.comments.SaveChanges();
-
-            return this.Ok("Comment updated");
         }
 
         [Authorize]
