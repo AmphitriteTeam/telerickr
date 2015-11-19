@@ -122,7 +122,7 @@
                 return this.NotFound();
             }
 
-            if (result.User.UserName != currentUser.UserName)
+            if (currentUser == null)
             {
                 return this.Unauthorized();
             }
