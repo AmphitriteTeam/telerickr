@@ -12,10 +12,12 @@
     public class PhotosController : ApiController
     {
         private readonly IRepository<Photo> photos;
+        private readonly IRepository<Album> albums;
 
-        public PhotosController(IRepository<Photo> photos)
+        public PhotosController(IRepository<Photo> photos, IRepository<Album> albums)
         {
             this.photos = photos;
+            this.albums = albums;
         }
 
         public IHttpActionResult Get()
@@ -61,11 +63,50 @@
         }
 
         [Authorize]
+        public IHttpActionResult Put(int id, bool like)
+        {
+            var photo = this.photos
+                .All()
+                .FirstOrDefault(p => p.Id == id);
+
+            var result = string.Empty;
+
+            if (photo == null)
+            {
+                return this.NotFound();
+            }
+
+            if (like)
+            {
+                photo.Likes++;
+                result = "Sucessfully liked picture!";
+            }
+            else
+            {
+                photo.Likes--;
+                result = "Sucessfully disliked picture!";
+            }
+
+            this.photos.SaveChanges();
+
+            return this.Ok(result);
+        }
+
+        [Authorize]
         public IHttpActionResult Post(PhotoRequestModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
+            }
+
+            var album = this.albums
+                .All()
+                .FirstOrDefault(a => a.Id == model.AlbumId);
+
+            if (album == null)
+            {
+                return this.NotFound();
             }
 
             var newPhoto = new Photo
@@ -82,30 +123,6 @@
             this.photos.SaveChanges();
 
             return this.Ok(newPhoto.Id);
-        }
-
-        [Authorize]
-        public IHttpActionResult Put(int id, bool like)
-        {
-            var photo = this.photos
-                .All()
-                .FirstOrDefault(p => p.Id == id);
-
-            var result = string.Empty;
-            if (like)
-            {
-                photo.Likes++;
-                result = "Sucessfully liked picture!";
-            }
-            else
-            {
-                photo.Likes--;
-                result = "Sucessfully disliked picture!";
-            }
-
-            this.photos.SaveChanges();
-
-            return this.Ok(result);
         }
         
         [Authorize]
