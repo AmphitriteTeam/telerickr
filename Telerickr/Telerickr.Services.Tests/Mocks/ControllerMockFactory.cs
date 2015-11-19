@@ -10,34 +10,29 @@
 
     public static class ControllerMockFactory
     {
-        public static AlbumsController GetAlbumsController(IRepository<Album> albums, IRepository<User> users, IRepository<Photo> photos, bool withUser = true, bool validUser = true)
+        public static AlbumsController GetAlbumsController(IRepository<Album> albums, IRepository<User> users, IRepository<Photo> photos, bool validUser = true)
         {
             var controller = new AlbumsController(albums, users, photos);
-            SetUser(controller, withUser, validUser);     
+            SetUser(controller, validUser);     
             return controller;
         }
 
-        public static PhotosController GetPhotosController(IRepository<Photo> photos, IRepository<Album> albums, bool withUser = true, bool validUser = true)
+        public static PhotosController GetPhotosController(IRepository<Photo> photos, IRepository<Album> albums,  bool validUser = true)
         {
             var controller = new PhotosController(photos, albums);
-            SetUser(controller, withUser, validUser);
+            SetUser(controller, validUser);
             return controller;
         }
 
-        public static CommentsController GetCommentsController(IRepository<Comment> comments, IRepository<Photo> photos, bool withUser = true, bool validUser = true)
+        public static CommentsController GetCommentsController(IRepository<Comment> comments, IRepository<Photo> photos, bool validUser = true)
         {
             var controller = new CommentsController(comments, photos);
-            SetUser(controller, withUser, validUser);
+            SetUser(controller, validUser);
             return controller;
         }
 
-        private static void SetUser(ApiController controller, bool withUser, bool validUser)
+        private static void SetUser(ApiController controller, bool validUser)
         {
-            if (!withUser)
-            {
-                return;
-            }
-
             var username = TestConstants.InvalidUsername;
             if (validUser)
             {
