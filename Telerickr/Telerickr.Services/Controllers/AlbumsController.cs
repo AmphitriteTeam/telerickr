@@ -88,6 +88,11 @@
                 .All()
                 .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
 
+            if (currentUser == null)
+            {
+                return this.Unauthorized();
+            }
+
             var newAlbum = new Album
             {
                 Title = model.Title,
