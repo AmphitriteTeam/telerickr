@@ -21,12 +21,27 @@
             return new InMemoryRepository<Photo>();
         }
 
-        public static User GetValidUser()
+        public static User GetValidUser(int i = 0)
         {
             return new User()
             {
-                UserName = "Test User0",
+                UserName = "Test User" + i,
                 Email = "TestUser0@abv.bg"
+            };
+        }
+
+        public static Album GetValidAlbum(int i = 0)
+        {
+            return new Album
+            {
+                Id = i,
+                Title = "Test Title " + i,
+                User = new User()
+                {
+                    UserName = "Test User" + i,
+                    Email = "TestUser" + i + "@abv.bg"
+                },
+                UserId = "test id " + i
             };
         }
 
@@ -36,16 +51,22 @@
 
             for (int i = 0; i < numberOfAlbums; i++)
             {
-                repo.Add(new Album
+                repo.Add(GetValidAlbum(i));
+            }
+
+            return repo;
+        }
+
+        public static InMemoryRepository<User> GetUserRepository(int numberOfUsers = TestConstants.DefaultNumberOfModels)
+        {
+            var repo = new InMemoryRepository<User>();
+
+            for (int i = 0; i < numberOfUsers; i++)
+            {
+                repo.Add(new User
                 {
-                  Id= i,
-                  Title = "Test Title " + i,
-                  User = new User()
-                  {
-                      UserName = "Test User" + i,
-                      Email = "TestUser" + i + "@abv.bg"
-                  },
-                  UserId = "test id " + i
+                    UserName = "Test User" + i,
+                    Email = "TestUser" + i + "@abv.bg"
                 });
             }
 

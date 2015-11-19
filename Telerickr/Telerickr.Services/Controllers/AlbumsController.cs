@@ -117,15 +117,16 @@
                 .Where(a => a.Id == id)
                 .FirstOrDefault();
 
-            if (result.User.UserName != currentUser.UserName)
-            {
-                return this.Unauthorized();
-            }
-
             if (result == null)
             {
                 return this.NotFound();
             }
+
+            if (currentUser == null)
+            {
+                return this.Unauthorized();
+            }
+
 
             var numberOfPhotos = result.Photos.Count;
             var allPhotos = result.Photos.ToList();
