@@ -105,23 +105,10 @@
         [TestMethod]
         public void PutWithInvalidUserShouldReturnUnauthorisedResult()
         {
-            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos, true, false);
 
             var correctedTitleAlbum = new AlbumRequestModel() { Title = TestConstants.ValidTitle };
             var result = controller.Put(1, correctedTitleAlbum);
-
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(UnauthorizedResult));
-        }
-
-        [TestMethod]
-        public void PutWithoutUserShouldReturnUnauthorisedResult()
-        {
-            var controller = ControllerMockFactory.GetAlbumsController(
-                this.albums, this.users, this.photos, false, false);
-
-            var correctedTitleAlbum = new AlbumRequestModel() { Title = TestConstants.ValidTitle };
-            var result = controller.Put(0, correctedTitleAlbum);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(UnauthorizedResult));
@@ -171,19 +158,6 @@
             Assert.IsInstanceOfType(result, typeof(InvalidModelStateResult));
             Assert.AreEqual(expectedUpdates, this.albums.UpdatedEntities.Count);
             Assert.AreEqual(expectedSaveChangesCalls, this.albums.NumberOfSaves);
-        }
-
-        [TestMethod]
-        public void PostWithoutUserShouldReturnUnauthorisedResult()
-        {
-            var controller = ControllerMockFactory.GetAlbumsController(
-                this.albums, this.users, this.photos, false, false);
-
-            var correctedTitleAlbum = new AlbumRequestModel() { Title = TestConstants.ValidTitle };
-            var result = controller.Post(correctedTitleAlbum);
-
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(UnauthorizedResult));
         }
 
         [TestMethod]
@@ -238,23 +212,6 @@
         {
             var controller = ControllerMockFactory.GetAlbumsController(
                 this.albums, this.users, this.photos, true, false);
-
-            var result = controller.Delete(0);
-
-            var expectedSaveChanges = 0;
-            var expectedCount = TestConstants.DefaultNumberOfModels;
-
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(UnauthorizedResult));
-            Assert.AreEqual(expectedSaveChanges, this.albums.NumberOfSaves);
-            Assert.AreEqual(expectedCount, this.albums.NumberOfModels);
-        }
-
-        [TestMethod]
-        public void DeleteWithoutUserShouldReturnUnauthorisedResult()
-        {
-            var controller = ControllerMockFactory.GetAlbumsController(
-                this.albums, this.users, this.photos, false, false);
 
             var result = controller.Delete(0);
 

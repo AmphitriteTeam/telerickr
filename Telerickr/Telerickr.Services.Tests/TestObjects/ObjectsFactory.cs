@@ -21,30 +21,6 @@
             return new InMemoryRepository<Photo>();
         }
 
-        public static User GetValidUser(int i = 0)
-        {
-            return new User()
-            {
-                UserName = "Test User" + i,
-                Email = "TestUser0@abv.bg"
-            };
-        }
-
-        public static Album GetValidAlbum(int i = 0)
-        {
-            return new Album
-            {
-                Id = i,
-                Title = "Test Title " + i,
-                User = new User()
-                {
-                    UserName = "Test User" + i,
-                    Email = "TestUser" + i + "@abv.bg"
-                },
-                UserId = "test id " + i
-            };
-        }
-
         public static InMemoryRepository<Album> GetAlbumRepository(int numberOfAlbums = TestConstants.DefaultNumberOfModels)
         {
             var repo = new InMemoryRepository<Album>();
@@ -72,5 +48,54 @@
 
             return repo;
         }
+
+        public static InMemoryRepository<Photo> GetPhotoRepository(int numberOfPhotos = TestConstants.DefaultNumberOfModels)
+        {
+            var repo = new InMemoryRepository<Photo>();
+
+            for (int i = 0; i < numberOfPhotos; i++)
+            {
+                repo.Add(GetValidPhoto(i));
+            }
+
+            return repo;
+        }
+
+        private static User GetValidUser(int i = 0)
+        {
+            return new User()
+            {
+                UserName = "Test User" + i,
+                Email = "TestUser0@abv.bg"
+            };
+        }
+
+        private static Album GetValidAlbum(int i = 0)
+        {
+            return new Album
+            {
+                Id = i,
+                Title = "Test Title " + i,
+                User = new User()
+                {
+                    UserName = "Test User" + i,
+                    Email = "TestUser" + i + "@abv.bg"
+                },
+                UserId = "test id " + i
+            };
+        }
+
+        private static Photo GetValidPhoto(int i = 0)
+        {
+            return new Photo
+            {
+                Id = i,
+                Title = "Test Title" + i,
+                Album = GetValidAlbum(i),
+                ImageUrl = TestConstants.ValidUrl,
+                FileExtension = TestConstants.ValidFileExtension
+            };
+        }
+
     }
 }

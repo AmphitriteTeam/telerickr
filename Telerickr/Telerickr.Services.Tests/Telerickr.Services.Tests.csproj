@@ -79,6 +79,7 @@
     <Compile Include="AlbumControllerTests.cs" />
     <Compile Include="Common\TestConstants.cs" />
     <Compile Include="Mocks\ControllerMockFactory.cs" />
+    <Compile Include="PhotoControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestObjects\InMemoryRepository.cs" />
     <Compile Include="TestObjects\ObjectsFactory.cs" />
