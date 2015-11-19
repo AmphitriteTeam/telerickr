@@ -1,17 +1,14 @@
 ﻿namespace Telerickr.Services.Tests
 {
-    using System;
-    using System.Text;
     using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TestObjects;
     using Telerickr.Models;
     using Mocks;
-    using System.Net.Http;
     using Models.Albums;
-    using System.Net;
     using System.Web.Http.Results;
     using Common;
+    using Controllers;
 
     /// <summary>
     /// Summary description for AlbumControllerTests
@@ -27,14 +24,14 @@
         public void Init()
         {
             this.albums = ObjectsFactory.GetAlbumRepository();
-            this.users = ObjectsFactory.GetEmptyUserRepository();
+            this.users = ObjectsFactory.GetUserRepository();
             this.photos = ObjectsFactory.GetEmptyPhotoRepository();
         }
 
         [TestMethod]
         public void GetShouldReturnOkResultWithData()
         {
-            var controller = ControllerMocks.GetAlbumsController(albums, users, photos, "test user");
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
 
             var result = controller.Get();
 
@@ -46,23 +43,34 @@
         }
 
         [TestMethod]
-        public void GetWithProvidedIdShouldReturnOkResultWithData()
+        public void GetWithProvidedValidIdShouldReturnOkResultWithData()
         {
-            var controller = ControllerMocks.GetAlbumsController(albums, users, photos, "Test User");
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
 
             var result = controller.Get(1);
 
-            var expected = 1;
+            var expectedCount = 1;
             var actual = result as OkNegotiatedContentResult<List<AlbumResponseModel>>;
 
             Assert.IsNotNull(actual);
-            Assert.AreEqual(expected, actual.Content.Count);
+            Assert.AreEqual(expectedCount, actual.Content.Count);
+        }
+
+        [TestMethod]
+        public void GetWithProvidedInvalidIdShouldReturnNotFoundResult()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
+
+            var result = controller.Get(TestConstants.DefaultNonExistingModelId);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(NotFoundResult));
         }
 
         [TestMethod]
         public void PutWithValidDataProvidedShouldReturnOkResult()
         {
-            var controller = ControllerMocks.GetAlbumsController(albums, users, photos, ObjectsFactory.GetValidUser().UserName);
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
 
             var correctedTitleAlbum = new AlbumRequestModel() { Title = "CoolTitle" };
             var result = controller.Put(0, correctedTitleAlbum);
@@ -73,21 +81,192 @@
             var expectedSaveChangesCalls = 1;
 
             Assert.AreEqual(expectedContent, actual.Content);
-            Assert.AreEqual(expectedUpdates, albums.UpdatedEntities.Count);
-            Assert.AreEqual(expectedSaveChangesCalls, albums.NumberOfSaves);
+            Assert.AreEqual(expectedUpdates, this.albums.UpdatedEntities.Count);
+            Assert.AreEqual(expectedSaveChangesCalls, this.albums.NumberOfSaves);
+        }
+
+        [TestMethod]
+        public void PutWithInvalidModelStateShouldReturnInvalidModelStateResultWithContent()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
+            controller.ModelState.AddModelError("title", "Title cannot be null.");
+
+            var emptyAlbum = new AlbumRequestModel();
+            var result = controller.Put(0, emptyAlbum);
+
+            var expectedUpdates = 0;
+            var expectedSaveChangesCalls = 0;
+
+            Assert.IsInstanceOfType(result, typeof(InvalidModelStateResult));
+            Assert.AreEqual(expectedUpdates, this.albums.UpdatedEntities.Count);
+            Assert.AreEqual(expectedSaveChangesCalls, this.albums.NumberOfSaves);
         }
 
         [TestMethod]
         public void PutWithInvalidUserShouldReturnUnauthorisedResult()
         {
-            var controller = ControllerMocks.GetAlbumsController(albums, users, photos, ObjectsFactory.GetValidUser().UserName);
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
 
-            var correctedTitleAlbum = new AlbumRequestModel() { Title = "CoolTitle" };
+            var correctedTitleAlbum = new AlbumRequestModel() { Title = TestConstants.ValidTitle };
             var result = controller.Put(1, correctedTitleAlbum);
-            
+
+            Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(UnauthorizedResult));
         }
 
-        
+        [TestMethod]
+        public void PutWithoutUserShouldReturnUnauthorisedResult()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(
+                this.albums, this.users, this.photos, false, false);
+
+            var correctedTitleAlbum = new AlbumRequestModel() { Title = TestConstants.ValidTitle };
+            var result = controller.Put(0, correctedTitleAlbum);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(UnauthorizedResult));
+        }
+
+        [TestMethod]
+        public void PutWithBadAlbumIdShouldReturnNotFoundResult()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
+
+            var correctedTitleAlbum = new AlbumRequestModel() { Title = TestConstants.ValidTitle };
+            var result = controller.Put(TestConstants.DefaultNonExistingModelId, correctedTitleAlbum);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(NotFoundResult));
+        }
+
+        [TestMethod]
+        public void PostWithValidDataShouldReturnOkResult()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
+
+            var albumToBeAdded = new AlbumRequestModel() { Title = TestConstants.ValidTitle };
+            var result = controller.Post(albumToBeAdded);
+
+            var expectedSaveChanges = 1;
+            var expectedAlbumsAfterChange = TestConstants.DefaultNumberOfModels + 1;
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<int>));
+            Assert.AreEqual(expectedAlbumsAfterChange, this.albums.NumberOfModels);
+            Assert.AreEqual(expectedSaveChanges, this.albums.NumberOfSaves);
+        }
+
+        [TestMethod]
+        public void PostWithInvalidModelShouldReturnBadRequestResultWithContent()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
+            controller.ModelState.AddModelError("title", "Title cannot be null.");
+
+            var emptyAlbum = new AlbumRequestModel();
+            var result = controller.Post(emptyAlbum);
+
+            var expectedUpdates = 0;
+            var expectedSaveChangesCalls = 0;
+
+            Assert.IsInstanceOfType(result, typeof(InvalidModelStateResult));
+            Assert.AreEqual(expectedUpdates, this.albums.UpdatedEntities.Count);
+            Assert.AreEqual(expectedSaveChangesCalls, this.albums.NumberOfSaves);
+        }
+
+        [TestMethod]
+        public void PostWithoutUserShouldReturnUnauthorisedResult()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(
+                this.albums, this.users, this.photos, false, false);
+
+            var correctedTitleAlbum = new AlbumRequestModel() { Title = TestConstants.ValidTitle };
+            var result = controller.Post(correctedTitleAlbum);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(UnauthorizedResult));
+        }
+
+        [TestMethod]
+        public void PostWithFakeAccountShouldReturnUnauthorisedResult()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(
+                this.albums, this.users, this.photos, true, false);
+
+            var albumToBeAdded = new AlbumRequestModel() { Title = TestConstants.ValidTitle };
+            var result = controller.Post(albumToBeAdded);
+
+            Assert.IsInstanceOfType(result, typeof(UnauthorizedResult));
+        }
+
+        [TestMethod]
+        public void DeleteWithValidDataShouldReturnOkResult()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
+
+            var result = controller.Delete(0);
+
+            var actual = result as OkNegotiatedContentResult<string>;
+            var expectedSaveChanges = 1;
+            var expectedCount = TestConstants.DefaultNumberOfModels - 1;
+            var expectedContent = "Album deleted with all pictures inside.";
+
+            // TODO: Add Assert to check if all photos are removed.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expectedSaveChanges, this.albums.NumberOfSaves);
+            Assert.AreEqual(expectedCount, this.albums.NumberOfModels);
+            Assert.AreEqual(expectedContent, actual.Content);
+        }
+
+        [TestMethod]
+        public void DeleteWithInvalidIdShouldReturnNotFoundResult()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(this.albums, this.users, this.photos);
+
+            var result = controller.Delete(TestConstants.DefaultNonExistingModelId);
+
+            var expectedSaveChanges = 0;
+            var expectedCount = TestConstants.DefaultNumberOfModels;
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(NotFoundResult));
+            Assert.AreEqual(expectedSaveChanges, this.albums.NumberOfSaves);
+            Assert.AreEqual(expectedCount, this.albums.NumberOfModels);
+        }
+
+        [TestMethod]
+        public void DeleteWithWrongUserShouldReturnUnauthorisedResult()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(
+                this.albums, this.users, this.photos, true, false);
+
+            var result = controller.Delete(0);
+
+            var expectedSaveChanges = 0;
+            var expectedCount = TestConstants.DefaultNumberOfModels;
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(UnauthorizedResult));
+            Assert.AreEqual(expectedSaveChanges, this.albums.NumberOfSaves);
+            Assert.AreEqual(expectedCount, this.albums.NumberOfModels);
+        }
+
+        [TestMethod]
+        public void DeleteWithoutUserShouldReturnUnauthorisedResult()
+        {
+            var controller = ControllerMockFactory.GetAlbumsController(
+                this.albums, this.users, this.photos, false, false);
+
+            var result = controller.Delete(0);
+
+            var expectedSaveChanges = 0;
+            var expectedCount = TestConstants.DefaultNumberOfModels;
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(UnauthorizedResult));
+            Assert.AreEqual(expectedSaveChanges, this.albums.NumberOfSaves);
+            Assert.AreEqual(expectedCount, this.albums.NumberOfModels);
+        }
+
+
     }
 }

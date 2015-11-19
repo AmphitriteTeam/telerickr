@@ -18,6 +18,8 @@
             this.UpdatedEntities = new List<T>();
         }
 
+        public int NumberOfModels { get { return this.data.Count;} }
+
         public IList<T> AttachedEntities { get; private set; }
 
         public IList<T> DetachedEntities { get; private set; }
