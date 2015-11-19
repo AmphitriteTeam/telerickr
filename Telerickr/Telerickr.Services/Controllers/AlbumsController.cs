@@ -58,7 +58,7 @@
                 .All()
                 .FirstOrDefault(a => a.Id == id);
 
-            if (this.albums == null)
+            if (albums == null)
             {
                 return this.NotFound();
             }
