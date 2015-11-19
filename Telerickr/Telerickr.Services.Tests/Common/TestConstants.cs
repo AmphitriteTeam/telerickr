@@ -12,5 +12,7 @@
         public const string ValidTitle = "Test Title0";
         public const string ValidUrl = "http://static.comicvine.com/uploads/original/11125/111253442/4897645-batman.jpg";
         public const string ValidFileExtension = ".jpg";
+        public const string ValidContent = "Test Content0";
+        public const string ValidUserId = "vAliDUseRId007";
     }
 }
