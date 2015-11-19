@@ -38,7 +38,7 @@
                 .Select(AlbumResponseModel.FromModel)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 return this.NotFound();
             }
