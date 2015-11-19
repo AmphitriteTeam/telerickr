@@ -77,6 +77,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AlbumControllerTests.cs" />
+    <Compile Include="CommentControllerTests.cs" />
     <Compile Include="Common\TestConstants.cs" />
     <Compile Include="Mocks\ControllerMockFactory.cs" />
     <Compile Include="PhotoControllerTests.cs" />

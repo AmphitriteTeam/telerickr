@@ -61,6 +61,18 @@
             return repo;
         }
 
+        public static InMemoryRepository<Comment> GetCommentRepository(int numberOfCommens = TestConstants.DefaultNumberOfModels)
+        {
+            var repo = new InMemoryRepository<Comment>();
+
+            for (int i = 0; i < numberOfCommens; i++)
+            {
+                repo.Add(GetValidComment(i));
+            }
+
+            return repo;
+        }
+
         private static User GetValidUser(int i = 0)
         {
             return new User()
@@ -97,5 +109,14 @@
             };
         }
 
+        private static Comment GetValidComment(int i = 0)
+        {
+            return new Comment
+            {
+                Id = i,
+                Content = "Test Content" + i,
+                User = GetValidUser(i)
+            };
+        }
     }
 }
