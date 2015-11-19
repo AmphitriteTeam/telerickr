@@ -1,8 +1,17 @@
-<fieldset>
-  <legend>Add new albums</legend>
-  <div class="form-group">
-    <label for="tb-album-title">Title:</label>
-    <input type="text" class="form-control" id="tb-album-title" />
-  </div>
-  <button class="form-control btn btn-primary" id="btn-album-add">Add</button>
-</fieldset>
+<h2>Add new album</h2>
+<form novalidate="">
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Title:</label>
+            <input type="text" class="form-control" id="tb-album-title" placeholder="Title" required="" data-validation-required-message="Please enter a title for the album." aria-invalid="false">
+            <p class="help-block text-danger"></p>
+        </div>
+    </div>
+    <br>
+    <div id="success"></div>
+    <div class="row">
+        <div class="form-group col-xs-12">
+            <button type="submit" id="btn-album-add" class="btn btn-success btn-lg">Add</button>
+        </div>
+    </div>
+</form>

@@ -12,6 +12,18 @@
             });
     }
 
+    function getById(context) {
+        var photo;
+        data.photos.getById(this.params['id'])
+            .then(function (resPhoto) {
+                photo = resPhoto;
+                return templates.get('single-photo');
+            })
+            .then(function (template) {
+                context.$element().html(template(photo));
+            });
+    }
+
     function add(context) {
         templates.get('share-photos')
             .then(function (template) {
@@ -43,6 +55,7 @@
 
     return {
         all: all,
-        add: add
+        add: add,
+        getById: getById
     };
 }());

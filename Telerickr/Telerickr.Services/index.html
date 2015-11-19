@@ -5,48 +5,47 @@
     <meta charset="UTF-8">
     <title>Telerickr</title>
     <link rel="stylesheet" href="resources/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="resources/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="resources/bootstrap/dist/css/freelancer.css">
     <link rel="stylesheet" href="resources/jquery-ui/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="resources/toastr/toastr.css">
-    <style>
-        #container-sign-in,
-        #container-sign-out {
-            margin-top: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="resources/style.css">
 </head>
 
 
 
 <body>
     <div id="root">
-        <header class="container">
-            <div class="row">
-                <h1 class="page-header col-md-6">Telerickr</h1>
-                <form class="form-inline col-md-6" id="container-sign-in">
-                    <div class="form-group">
-                        <label class="sr-only" for="tb-username">Username</label>
-                        <input type="text" class="form-control" id="tb-username" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="tb-password">Password</label>
-                        <input type="password" class="form-control" id="tb-password" placeholder="Password">
-                    </div>
-                    <button id="btn-sign-in" class="btn btn-default">Sign in</button>
-                </form>
-                <form class="form-inline col-md-6" id="container-sign-out">
-                    <button id="btn-sign-out" class="btn btn-default">Sign out</button>
-                </form>
-            </div>
-            <nav class="navbar row">
-                <ul id="main-nav" class="nav nav-tabs nav-justified col-md-8">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                    <h1 class="navbar-brand">Telerickr</h1>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="form-inline" id="container-sign-in">
+                            <div class="form-group">
+                                <label class="sr-only" for="tb-username">Username</label>
+                                <input type="text" class="form-control" id="tb-username" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="tb-password">Password</label>
+                                <input type="password" class="form-control" id="tb-password" placeholder="Password">
+                            </div>
+                            <button id="btn-sign-in" class="btn btn-default">Sign in</button>
+                        </li>
+                        <li class="form-inline" id="container-sign-out">
+                            <button id="btn-sign-out" class="btn btn-default">Sign out</button>
+                        </li>
+                    </ul>
+                </div>
+                <ul id="main-nav" class="nav nav-tabs nav-justified">
                     <li id="home-nav-item"><a href="./#/">Home</a></li>
                     <li id="albums-nav-item"><a href="./#/albums">Albums</a></li>
+                    <li id="photos-nav-item"><a href="./#/photos">Photos</a></li>
                 </ul>
-            </nav>
-        </header>
+            </div>
+        </nav>
         <div id="content" class="container">
-
         </div>
     </div>
 

@@ -123,6 +123,19 @@ var data = (function() {
             });
     }
 
+    function getPhotoById(id) {
+        var options = {
+            headers: {
+                'Authorization': "Bearer " + localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY)
+            }
+        };
+
+        return jsonRequester.get('api/photos/' + id, options)
+            .then(function (res) {
+                return res;
+            });
+    }
+
     function photosAdd(photo) {
         var photo = {
             title: photo.title,
@@ -159,7 +172,8 @@ var data = (function() {
         },
         photos: {
             add: photosAdd,
-            get: photosGet
+            get: photosGet,
+            getById: getPhotoById
         }
     };
 }());

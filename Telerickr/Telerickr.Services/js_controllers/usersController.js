@@ -1,26 +1,26 @@
 var usersController = function() {
-  function register(context) {
-    templates.get('register')
-      .then(function(template) {
-        context.$element().html(template());
+    function register(context) {
+        templates.get('register')
+          .then(function(template) {
+              context.$element().html(template());
 
-        $('#btn-register').on('click', function() {
-          var user = {
-            email: $('#tb-reg-username').val(),
-            password: $('#tb-reg-pass').val(),
-            confirmPassword: $('#tb-reg-confirmPass').val()
-          };
+              $('#btn-register').on('click', function() {
+                  var user = {
+                      email: $('#tb-reg-username').val(),
+                      password: $('#tb-reg-pass').val(),
+                      confirmPassword: $('#tb-reg-confirmPass').val()
+                  };
 
-          data.users.register(user)
-            .then(function() {
-              toastr.success('User ' + user.email + ' registered! You can now login!');
-              context.redirect('#/');
-            });
-        });
-      });
-  }
+                  data.users.register(user)
+                    .then(function() {
+                        toastr.success('User ' + user.email + ' registered! You can now login!');
+                        context.redirect('#/');
+                    });
+              });
+          });
+    }
 
   return {
-    register: register
-  };
+        register: register
+    };
 }();

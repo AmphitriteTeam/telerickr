@@ -14,6 +14,7 @@
 
     this.get('#/photos', photosController.all);
     this.get('#/photos/share', photosController.add);
+    this.get('#/photos/:id', photosController.getById);
 
     this.get('#/my-albums', myAlbumsController.get);
 

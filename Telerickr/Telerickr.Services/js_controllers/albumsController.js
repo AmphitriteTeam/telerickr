@@ -9,6 +9,7 @@ var albumsController = (function() {
             })
             .then(function(template) {
                 context.$element().html(template(albums));
+                return data.users.get
             });
     }
 

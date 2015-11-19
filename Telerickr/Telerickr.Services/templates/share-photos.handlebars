@@ -1,16 +1,26 @@
-﻿<fieldset>
-    <legend>Add new photo</legend>
-    <div class="form-group">
-        <label for="albums-dropdown">Album:</label>
-        <select id="albums-dropdown" class="form-control"></select>
+﻿<h2>Add new photo</h2>
+<form novalidate="">
+    <div class="row control-group">
+        <div class="form-group col-xs-12 controls">
+            <label>Album:</label>
+            <select id="albums-dropdown" class="form-control"></select>
+        </div>
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Title:</label>
+            <input type="text" class="form-control" id="tb-photo-title" placeholder="Title" required="" data-validation-required-message="Please enter a title for the photo." aria-invalid="false">
+            <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Url:</label>
+            <input type="text" class="form-control" id="tb-photo-url" placeholder="Image Url" required="" data-validation-required-message="Please enter the url of the image." aria-invalid="false">
+            <p class="help-block text-danger"></p>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="tb-photo-title">Title:</label>
-        <input type="text" class="form-control" id="tb-photo-title" />
+    <br>
+    <div id="success"></div>
+    <div class="row">
+        <div class="form-group col-xs-12">
+            <button type="submit" id="btn-photo-add" class="btn btn-success btn-lg">Add</button>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="tb-photo-url">Url:</label>
-        <input type="text" class="form-control" id="tb-photo-url" />
-    </div>
-    <button class="form-control btn btn-primary" id="btn-photo-add">Add</button>
-</fieldset>
+</form>
