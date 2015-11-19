@@ -222,6 +222,7 @@
     <Content Include="app\json-requester.js" />
     <Content Include="app\templates.js" />
     <Content Include="app\validator.js" />
+    <Content Include="js_controllers\photosController.js" />
     <Content Include="resources\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="resources\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="resources\bootstrap\dist\css\bootstrap.css" />
@@ -1607,6 +1608,8 @@
     <Content Include="templates\share-albums.handlebars" />
     <Content Include="templates\users.handlebars" />
     <Content Include="templates\albums.handlebars" />
+    <Content Include="templates\share-photos.handlebars" />
+    <Content Include="templates\photos.handlebars" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
