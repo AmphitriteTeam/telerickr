@@ -1470,7 +1470,6 @@
     <Content Include="resources\bootstrap\dist\font-awesome\scss\_spinning.scss" />
     <Content Include="resources\bootstrap\dist\font-awesome\scss\_stacked.scss" />
     <Content Include="resources\bootstrap\dist\font-awesome\scss\_variables.scss" />
-    <None Include="templates\single-photo.handlebars" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1655,6 +1654,7 @@
     <Content Include="templates\albums.handlebars" />
     <Content Include="templates\share-photos.handlebars" />
     <Content Include="templates\photos.handlebars" />
+    <Content Include="templates\single-photo.handlebars" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
