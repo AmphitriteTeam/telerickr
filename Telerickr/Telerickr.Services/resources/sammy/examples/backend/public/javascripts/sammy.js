@@ -359,7 +359,7 @@
     // <tt>EventContext</tt>. <tt>template_engine</tt> can either be a string that
     // corresponds to the name of a method/helper on EventContext or it can be a function
     // that takes two arguments, the content of the unrendered partial and an optional
-    // JS object that contains interpolation data. Template engine is only called/refered
+    // JS object that contains interpolation data. Template engine is only called/referred
     // to if the extension of the partial is null or unknown. See <tt>partial()</tt>
     // for more information
     template_engine: null,
