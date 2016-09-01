@@ -539,7 +539,7 @@
       return ['sammy-app', this.namespace].join('-');
     },
 
-    // Works just like <tt>jQuery.fn.bind()</tt> with a couple noteable differences.
+    // Works just like <tt>jQuery.fn.bind()</tt> with a couple notable differences.
     //
     // * It binds all events to the application element
     // * All events are bound within the <tt>eventNamespace()</tt>
