@@ -153,7 +153,7 @@
             };
             var result = controller.Post(0, commentToBeAdded);
             var actual = result as OkNegotiatedContentResult<string>;
-            var expectedContent = "Comment succesfully added.";
+            var expectedContent = "Comment successfully added.";
             var expectedSaveChanges = 1;
             var expectedNumberOfCommentsAdded = 1;
 

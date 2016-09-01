@@ -51,7 +51,7 @@
     }
 
     this.helpers({
-      // Disable tracking for the current route. Put at the begining of the
+      // Disable tracking for the current route. Put at the beginning of the
       // route's callback
       doNotTrackKISSmetrics: function() {
         disableTracking();

@@ -307,7 +307,7 @@ New:
 - test_server is a simple Sinatra/vegas app for running the tests on a local ruby server (allows for testing functionality that requires the http:// protocol)
 - Sammy.Store#load(key, path) loads file at path into key
 - partial() will now iterate over an array of data, calling the callback for each element, or appending the collected result.
-- route() takes the psuedo-verb 'any' which appends the path/callback to all the verbs. Also, added the shortcut method any(). If only a path and callback are supplied to route(), the verb is assumed to be 'any'.
+- route() takes the pseudo-verb 'any' which appends the path/callback to all the verbs. Also, added the shortcut method any(). If only a path and callback are supplied to route(), the verb is assumed to be 'any'.
 - Passing a string as the callback argument to route() looks up that method on the application.
 - Sammy.Application#mapRoutes() takes an array of routes (as arrays of arguments) and adds them to the app.
 - Sammy() is a function itself which provides an easy hook for looking up/creating/and extending applications with the element_selector as the unique identifier.

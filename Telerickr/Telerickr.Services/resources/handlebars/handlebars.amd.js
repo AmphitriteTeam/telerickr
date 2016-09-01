@@ -716,7 +716,7 @@ define('handlebars/runtime',['exports', './utils', './exception', './base'], fun
     templateSpec.main.decorator = templateSpec.main_d;
 
     // Note: Using env.VM references rather than local var references throughout this section to allow
-    // for external users to override these as psuedo-supported APIs.
+    // for external users to override these as pseudo-supported APIs.
     env.VM.checkRevision(templateSpec.compiler);
 
     function invokePartialWrapper(partial, context, options) {
@@ -2138,7 +2138,7 @@ define('handlebars/compiler/whitespace-control',['exports', 'module', './visitor
       return;
     }
 
-    // We omit the last node if it's whitespace only and not preceeded by a non-content node.
+    // We omit the last node if it's whitespace only and not preceded by a non-content node.
     var original = current.value;
     current.value = current.value.replace(multiple ? /\s+$/ : /[ \t]+$/, '');
     current.leftStripped = current.value !== original;

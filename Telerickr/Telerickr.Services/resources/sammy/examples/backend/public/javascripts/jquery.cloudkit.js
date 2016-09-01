@@ -212,7 +212,7 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
       var results = json.JSONQuery("$.customers[?purchases > 21 & name='Jake'][\\purchases]",data);
 
-      returns customers sorted by higest number of purchases to lowest.
+      returns customers sorted by highest number of purchases to lowest.
 
 */
 

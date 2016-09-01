@@ -31,7 +31,7 @@
   //      // returns the app at #main or a new app
   //      Sammy('#main')
   //
-  //      // equivilent to "new Sammy.Application", except appends to apps
+  //      // equivalent to "new Sammy.Application", except appends to apps
   //      Sammy();
   //      Sammy(function() { ... });
   //
@@ -52,7 +52,7 @@
           app.use(plugin);
         });
       }
-      // if the selector changes make sure the refrence in Sammy.apps changes
+      // if the selector changes make sure the reference in Sammy.apps changes
       if (app.element_selector != selector) {
         delete Sammy.apps[selector];
       }
@@ -359,7 +359,7 @@
     // <tt>EventContext</tt>. <tt>template_engine</tt> can either be a string that
     // corresponds to the name of a method/helper on EventContext or it can be a function
     // that takes two arguments, the content of the unrendered partial and an optional
-    // JS object that contains interpolation data. Template engine is only called/refered
+    // JS object that contains interpolation data. Template engine is only called/referred
     // to if the extension of the partial is null or unknown. See <tt>partial()</tt>
     // for more information
     template_engine: null,
@@ -539,7 +539,7 @@
       return ['sammy-app', this.namespace].join('-');
     },
 
-    // Works just like <tt>jQuery.fn.bind()</tt> with a couple noteable differences.
+    // Works just like <tt>jQuery.fn.bind()</tt> with a couple notable differences.
     //
     // * It binds all events to the application element
     // * All events are bound within the <tt>eventNamespace()</tt>
@@ -568,7 +568,7 @@
         callback.apply(context, [e, data]);
       };
 
-      // it could be that the app element doesnt exist yet
+      // it could be that the app element doesn't exist yet
       // so attach to the listeners array and then run()
       // will actually bind the event.
       if (!this.listeners[name]) { this.listeners[name] = []; }
@@ -654,7 +654,7 @@
     // that take a single argument <tt>callback</tt> which is the entire route
     // execution path wrapped up in a closure. This means you can decide whether
     // or not to proceed with execution by not invoking <tt>callback</tt> or,
-    // more usefuly wrapping callback inside the result of an asynchronous execution.
+    // more usefully wrapping callback inside the result of an asynchronous execution.
     //
     // === Example
     //
@@ -990,7 +990,7 @@
     //     // match against a path string
     //     app.contextMatchesOptions(context, '#/mypath'); //=> true
     //     app.contextMatchesOptions(context, '#/otherpath'); //=> false
-    //     // equivilent to
+    //     // equivalent to
     //     app.contextMatchesOptions(context, {only: {path:'#/mypath'}}); //=> true
     //     app.contextMatchesOptions(context, {only: {path:'#/otherpath'}}); //=> false
     //     // match against a path regexp
@@ -1329,7 +1329,7 @@
     // === Example
     //
     //      redirect('#/other/route');
-    //      // equivilent to
+    //      // equivalent to
     //      redirect('#', 'other', 'route');
     //
     redirect: function() {

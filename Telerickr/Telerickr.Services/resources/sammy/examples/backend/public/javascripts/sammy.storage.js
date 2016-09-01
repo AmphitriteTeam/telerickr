@@ -73,7 +73,7 @@
         true;
       }
     },
-    // Checks for the existance of <tt>key</tt> in the current store. Returns a boolean.
+    // Checks for the existence of <tt>key</tt> in the current store. Returns a boolean.
     exists: function(key) {
       return this.storage.exists(key);
     },
@@ -289,7 +289,7 @@
 
   // .SessionStorage ('session') is similar to LocalStorage (part of the same API)
   // and shares similar browser support/availability. The difference is that
-  // SessionStorage is only persistant through the current 'session' which is defined
+  // SessionStorage is only persistent through the current 'session' which is defined
   // as the length that the current window is open. This means that data will survive
   // refreshes but not close/open or multiple windows/tabs. For more info, check out
   // the <tt>LocalStorage</tt> documentation and links.
@@ -406,13 +406,13 @@
     //          // returns the Sammy.Store object
     //          this.store('mystore');
     //          // sets 'foo' to 'bar' using the shortcut/helper
-    //          // equivilent to this.store('mystore').set('foo', 'bar');
+    //          // equivalent to this.store('mystore').set('foo', 'bar');
     //          this.mystore('foo', 'bar');
     //          // returns 'bar'
-    //          // equivilent to this.store('mystore').get('foo');
+    //          // equivalent to this.store('mystore').get('foo');
     //          this.mystore('foo');
     //          // returns 'baz!'
-    //          // equivilent to:
+    //          // equivalent to:
     //          // this.store('mystore').fetch('foo!', function() {
     //          //   return 'baz!';
     //          // })
@@ -421,7 +421,7 @@
     //          });
     //
     //          this.clearMystore();
-    //          // equivilent to:
+    //          // equivalent to:
     //          // this.store('mystore').clearAll()
     //        });
     //
