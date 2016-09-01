@@ -654,7 +654,7 @@
     // that take a single argument <tt>callback</tt> which is the entire route
     // execution path wrapped up in a closure. This means you can decide whether
     // or not to proceed with execution by not invoking <tt>callback</tt> or,
-    // more usefuly wrapping callback inside the result of an asynchronous execution.
+    // more usefully wrapping callback inside the result of an asynchronous execution.
     //
     // === Example
     //
