@@ -406,13 +406,13 @@
     //          // returns the Sammy.Store object
     //          this.store('mystore');
     //          // sets 'foo' to 'bar' using the shortcut/helper
-    //          // equivilent to this.store('mystore').set('foo', 'bar');
+    //          // equivalent to this.store('mystore').set('foo', 'bar');
     //          this.mystore('foo', 'bar');
     //          // returns 'bar'
-    //          // equivilent to this.store('mystore').get('foo');
+    //          // equivalent to this.store('mystore').get('foo');
     //          this.mystore('foo');
     //          // returns 'baz!'
-    //          // equivilent to:
+    //          // equivalent to:
     //          // this.store('mystore').fetch('foo!', function() {
     //          //   return 'baz!';
     //          // })
@@ -421,7 +421,7 @@
     //          });
     //
     //          this.clearMystore();
-    //          // equivilent to:
+    //          // equivalent to:
     //          // this.store('mystore').clearAll()
     //        });
     //

@@ -31,7 +31,7 @@
   //      // returns the app at #main or a new app
   //      Sammy('#main')
   //
-  //      // equivilent to "new Sammy.Application", except appends to apps
+  //      // equivalent to "new Sammy.Application", except appends to apps
   //      Sammy();
   //      Sammy(function() { ... });
   //
@@ -990,7 +990,7 @@
     //     // match against a path string
     //     app.contextMatchesOptions(context, '#/mypath'); //=> true
     //     app.contextMatchesOptions(context, '#/otherpath'); //=> false
-    //     // equivilent to
+    //     // equivalent to
     //     app.contextMatchesOptions(context, {only: {path:'#/mypath'}}); //=> true
     //     app.contextMatchesOptions(context, {only: {path:'#/otherpath'}}); //=> false
     //     // match against a path regexp
@@ -1329,7 +1329,7 @@
     // === Example
     //
     //      redirect('#/other/route');
-    //      // equivilent to
+    //      // equivalent to
     //      redirect('#', 'other', 'route');
     //
     redirect: function() {
