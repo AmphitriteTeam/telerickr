@@ -568,7 +568,7 @@
         callback.apply(context, [e, data]);
       };
 
-      // it could be that the app element doesnt exist yet
+      // it could be that the app element doesn't exist yet
       // so attach to the listeners array and then run()
       // will actually bind the event.
       if (!this.listeners[name]) { this.listeners[name] = []; }
