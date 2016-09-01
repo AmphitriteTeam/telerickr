@@ -82,7 +82,7 @@
             var controller = ControllerMockFactory.GetPhotosController(this.photos, this.albums);
 
             var result = controller.Put(0, true);
-            var expectedContent = "Sucessfully liked picture!";
+            var expectedContent = "Successfully liked picture!";
             var expectedLikes = 1;
             var actual = result as OkNegotiatedContentResult<string>;
 
@@ -91,7 +91,7 @@
             Assert.AreEqual(expectedLikes, this.photos.GetById(0).Likes);
 
             result = controller.Put(0, false);
-            expectedContent = "Sucessfully disliked picture!";
+            expectedContent = "Successfully disliked picture!";
             expectedLikes = 0;
             actual = result as OkNegotiatedContentResult<string>;
 

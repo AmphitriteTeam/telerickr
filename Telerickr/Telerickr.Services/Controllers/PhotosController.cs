@@ -79,12 +79,12 @@
             if (like)
             {
                 photo.Likes++;
-                result = "Sucessfully liked picture!";
+                result = "Successfully liked picture!";
             }
             else
             {
                 photo.Likes--;
-                result = "Sucessfully disliked picture!";
+                result = "Successfully disliked picture!";
             }
 
             this.photos.SaveChanges();
