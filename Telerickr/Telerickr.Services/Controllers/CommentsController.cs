@@ -103,7 +103,7 @@
             photo.Comments.Add(commentToAdd);
             this.photos.SaveChanges();
 
-            return this.Ok("Comment succesfully added.");
+            return this.Ok("Comment successfully added.");
         }
 
         [Authorize]
