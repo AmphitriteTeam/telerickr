@@ -73,7 +73,7 @@
         true;
       }
     },
-    // Checks for the existance of <tt>key</tt> in the current store. Returns a boolean.
+    // Checks for the existence of <tt>key</tt> in the current store. Returns a boolean.
     exists: function(key) {
       return this.storage.exists(key);
     },
