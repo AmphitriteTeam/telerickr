@@ -361,7 +361,7 @@
 
   // .SessionStorage ('session') is similar to LocalStorage (part of the same API)
   // and shares similar browser support/availability. The difference is that
-  // SessionStorage is only persistant through the current 'session' which is defined
+  // SessionStorage is only persistent through the current 'session' which is defined
   // as the length that the current window is open. This means that data will survive
   // refreshes but not close/open or multiple windows/tabs. For more info, check out
   // the `LocalStorage` documentation and links.
