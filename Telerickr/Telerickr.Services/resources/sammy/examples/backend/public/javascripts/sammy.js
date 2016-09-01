@@ -52,7 +52,7 @@
           app.use(plugin);
         });
       }
-      // if the selector changes make sure the refrence in Sammy.apps changes
+      // if the selector changes make sure the reference in Sammy.apps changes
       if (app.element_selector != selector) {
         delete Sammy.apps[selector];
       }
