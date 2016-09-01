@@ -237,7 +237,7 @@
       // * `attributes` an object representing the attributes of the element as
       //   key value pairs. e.g. {class: 'element-class'}
       // * `content` an optional string representing the content for the
-      //   the element. If ommited, the element becomes self closing
+      //   the element. If omitted, the element becomes self closing
       //
       simple_element: simple_element,
 
